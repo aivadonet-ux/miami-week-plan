@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Miami – Wochenplan & Kartenlinks</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #121a33;
+    --card: #162245;
+    --text: #e8eef8;
+    --muted: #9fb2d1;
+    --accent: #6aa4ff;
+    --free: #1e2b57;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text);}
+  header { position: sticky; top:0; background: linear-gradient(180deg, rgba(11,16,32,.95), rgba(11,16,32,.7)); backdrop-filter: blur(6px); padding:16px 20px; border-bottom: 1px solid rgba(255,255,255,.06); z-index: 10; }
+  h1 { margin:0; font-size: 20px; letter-spacing:.2px; }
+  .legend { display:inline-block; padding:6px 10px; margin:8px 6px 0 0; border-radius: 999px; background: #23305f; color:#cfe0ff; font-size:12px; }
+  .tabs { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .tab { padding:10px 14px; background: var(--panel); border:1px solid rgba(255,255,255,.08); color:#cfe0ff; border-radius:10px; cursor:pointer; user-select:none; }
+  .tab.active { background: var(--card); border-color: rgba(255,255,255,.18); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 16px 20px 40px; }
+  .day { display:none; gap:14px; margin-top: 16px; }
+  .day.active { display:block; }
+  .event { display:flex; gap: 14px; padding: 12px; margin: 10px 0; background: var(--card); border:1px solid rgba(255,255,255,.08); border-radius: 14px; }
+  .event .time { width: 130px; min-width: 130px; font-weight: 600; color: var(--accent); }
+  .event .content .title { font-weight: 600; margin-bottom: 4px; }
+  .event .content .addr a { color: #bcd6ff; text-decoration: none; }
+  .event .content .addr a:hover { text-decoration: underline; }
+  .event .note { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .event.free { background: var(--free); border-color: rgba(255,255,255,.05); }
+  .route-btn { display:inline-block; margin: 4px 0 12px; padding:8px 12px; background: #1b2c5f; color:#d6e6ff; border:1px solid rgba(255,255,255,.1); border-radius: 10px; text-decoration:none; }
+  .hint { margin-top: 10px; color: var(--muted); font-size: 13px; }
+  /* subtle colored left borders per type */
+  .type-lot { border-left: 4px solid #66d17a; }
+  .type-condo { border-left: 4px solid #9C7BFF; }
+  .type-commercial { border-left: 4px solid #FF8A65;}
+  .type-bank { border-left: 4px solid #FFCD38;}
+  .type-tour { border-left: 4px solid #64B5F6;}
+  .type-travel { border-left: 4px solid #A3B1C6;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Miami – Wochenplan & Kartenlinks</h1>
+  <div class="legend-wrap"><span class="legend type-hotel">Hotel</span><span class="legend type-lot">Lot</span><span class="legend type-condo">Condo</span><span class="legend type-commercial">Commercial</span><span class="legend type-bank">Bank</span><span class="legend type-tour">Tour</span><span class="legend free">Flex</span><span class="legend type-travel">Travel</span></div>
+  <div class="tabs">
+    <div class="tab active" data-day="Samstag">Samstag</div>
+    <div class="tab" data-day="Sonntag">Sonntag</div>
+    <div class="tab" data-day="Montag">Montag</div>
+    <div class="tab" data-day="Dienstag">Dienstag</div>
+    <div class="tab" data-day="Mittwoch">Mittwoch</div>
+    <div class="tab" data-day="Donnerstag">Donnerstag</div>
+  </div>
+</header>
+<div class="container">
+  <div id="Samstag" class="day active">Plan Samstag (Anreise)</div>
+  <div id="Sonntag" class="day">Plan Sonntag</div>
+  <div id="Montag" class="day">Plan Montag</div>
+  <div id="Dienstag" class="day">Plan Dienstag</div>
+  <div id="Mittwoch" class="day">Plan Mittwoch</div>
+  <div id="Donnerstag" class="day">Plan Donnerstag</div>
+  <div class="hint">Tipp: Adressen sind klickbar (öffnet Google Maps). Routen pro Tag: Buttons oben.</div>
+</div>
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.day').forEach(x => x.classList.remove('active'));
+    const id = t.getAttribute('data-day');
+    t.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }));
+</script>
+</body>
+</html>
